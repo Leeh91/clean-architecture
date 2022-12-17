@@ -1,0 +1,8 @@
+rootProject.name = 'clean-architecture-quick-start'
+include 'common'
+include 'persistence-adapter'
+include 'configuration'
+include 'api-adapter'
+include 'application'
+include 'client-adapter'
+include 'event-adapter'

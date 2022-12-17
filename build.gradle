@@ -1,0 +1,94 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.3.1.RELEASE'
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+}
+
+allprojects {
+
+    buildscript {
+        ext {
+            springBootVersion = '2.3.1.RELEASE'
+        }
+        repositories {
+            jcenter()
+            mavenCentral()
+            maven {
+                url 'https://plugins.gradle.org/m2/'
+            }
+            maven {
+                credentials {
+                    username System.getenv('NEXUS_USER')
+                    password System.getenv('NEXUS_PASS')
+                }
+                url System.getenv('NEXUS_URL')+"/maven-public/"
+            }
+        }
+    }
+
+    ext {
+        springCloudVersion = 'Finchley.SR1'
+    }
+
+    version '1.0.0'
+
+    sourceCompatibility = '11'
+    targetCompatibility = 11
+
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'eclipse'
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+        maven {
+            credentials {
+                username System.getenv('NEXUS_USER')
+                password System.getenv('NEXUS_PASS')
+            }
+            url System.getenv('NEXUS_URL')+"/maven-public/"
+        }
+    }
+
+    dependencies {
+
+        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8'
+        compile group: 'com.vividsolutions', name: 'jts', version: '1.13'
+        compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+        compile group: 'org.javassist', name: 'javassist', version: '3.26.0-GA'
+        
+    }
+
+	test {
+        useJUnitPlatform()
+        systemProperty 'de.adesso.junitinsights.enabled', 'true'
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': project.version)
+    }
+    archivesBaseName = 'clean-architecture-quick-start'
+}
+
+bootJar {
+    mainClassName = 'br.com.demo.Application'
+}
+
+dependencies {
+    compile project(':configuration')
+}

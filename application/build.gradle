@@ -1,0 +1,13 @@
+dependencies {
+    implementation project(':common')
+
+    implementation 'javax.validation:validation-api'
+    implementation 'javax.transaction:javax.transaction-api:1.2'
+}
+
+jar {
+    archivesBaseName = "clean-architecture-quick-start-${project.name}"
+    enabled = true
+}
+
+bootJar { enabled = false}

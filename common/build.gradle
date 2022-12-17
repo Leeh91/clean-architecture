@@ -1,0 +1,12 @@
+dependencies {
+    implementation 'org.springframework:spring-context'
+    implementation 'org.springframework:spring-core'
+    implementation 'javax.validation:validation-api'
+}
+
+jar {
+    archivesBaseName = "clean-architecture-quick-start-${project.name}"
+    enabled = true
+}
+
+bootJar { enabled = false}
