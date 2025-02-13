@@ -1,17 +1,8 @@
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
-
     implementation project(':application')
     implementation project(':common')
-
-    testCompile group: 'com.bedatadriven', name: 'jackson-datatype-jts', version: '2.4'
-
-    implementation('org.springframework.cloud:spring-cloud-starter-aws-messaging')
-
-    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: "${springBootVersion}"){
-        exclude group: 'junit' // excluding junit 4
-    }
 }
 
 jar {

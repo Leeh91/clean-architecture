@@ -3,16 +3,8 @@ apply plugin: 'io.spring.dependency-management'
 dependencies {
     implementation project(':common')
     implementation project(':application')
-
-    compile(group: "org.springframework.boot", name: "spring-boot-starter-web", version: "${springBootVersion}") {
+    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
-    }
-
-    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-
-    testCompile group: 'com.bedatadriven', name: 'jackson-datatype-jts', version: '2.4'
-    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: "${springBootVersion}"){
-        exclude group: 'junit' // excluding junit 4
     }
 }
 

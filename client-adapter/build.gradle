@@ -4,22 +4,7 @@ dependencies {
     implementation project(':common')
     implementation project(':application')
 
-    testCompile project(':application').sourceSets.test.output
-
-    implementation 'org.springframework.retry:spring-retry:1.2.4.RELEASE'
-    implementation 'io.github.openfeign.form:feign-form-spring:3.8.0'
-
-    compile(group: "org.springframework.boot", name: "spring-boot-starter-web", version: "${springBootVersion}") {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
-    }
-
-    testCompile group: 'com.bedatadriven', name: 'jackson-datatype-jts', version: '2.4'
-
-    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: "${springBootVersion}"){
-        exclude group: 'junit' // excluding junit 4
-    }
-
-    testCompile project(':application').sourceSets.test.output
+    testImplementation project(':application').sourceSets.test.output
 }
 
 jar {
