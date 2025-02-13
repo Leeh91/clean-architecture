@@ -13,16 +13,12 @@ dependencies {
     implementation project(':client-adapter')
     implementation project(':event-adapter')
 
-    compile('org.springframework.cloud:spring-cloud-starter-config')
-    compile('org.springframework.boot:spring-boot-starter-undertow')
-    compile('org.springframework.boot:spring-boot-starter-actuator')
-    runtime('org.springframework.boot:spring-boot-devtools')
+    implementation('org.springframework.cloud:spring-cloud-starter-config')
+    implementation('org.springframework.boot:spring-boot-starter-undertow')
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
 
-    compile group: 'com.bedatadriven', name: 'jackson-datatype-jts', version: '2.4'
-
-    implementation('org.springframework.cloud:spring-cloud-starter-aws-messaging')
-    implementation 'redis.clients:jedis:3.3.0'
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.0.1.RELEASE'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 
 }
 
@@ -39,7 +35,7 @@ jar {
                 'Main-Class': 'br.com.demo.Application'
         )
     }
-    archivesBaseName = 'clean=architecture-quick-start'
+    archivesBaseName = 'clean-architecture-quick-start'
 }
 
 application {
